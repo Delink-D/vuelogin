@@ -36,7 +36,7 @@
 
           <md-list-item>
             <md-icon>lock</md-icon>
-            <span class="md-list-item-text logoutBtn" v-on:click="logout">Sign Out</span>
+            <span class="md-list-item-text" v-on:click='logout'>Sign Out</span>
           </md-list-item>
 
           <md-divider></md-divider>
