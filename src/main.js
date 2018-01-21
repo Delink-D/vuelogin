@@ -10,8 +10,9 @@ import environment from '../config/environment'
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
 
-// Initialize Firebase
-var config = {
+let app;
+/** Initialize Firebase */
+let config = {
   apiKey: environment.firebase.apiKey,
   authDomain: environment.firebase.authDomain,
   databaseURL: environment.firebase.databaseURL,
@@ -21,11 +22,13 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      components: { App },
+      template: '<App/>'
+    })
+  }
+});
