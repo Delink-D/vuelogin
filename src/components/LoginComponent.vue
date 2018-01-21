@@ -37,7 +37,7 @@
         </md-card-actions>
       </md-card> <!-- end of login card -->
 
-      <md-snackbar :md-active.sync="userLoggedin">The user {{ loggedinUser }} was Loggedin successuly!</md-snackbar>
+      <md-snackbar :md-active.sync="userLoggedin">The user {{ loggedinUser }} was Logged in successuly!</md-snackbar>
       <md-snackbar :md-active.sync="wrongCredentilas">
         <span>The userId or password are wrong, pls try again!</span>
         <md-button class="md-primary" @click="wrongCredentilas = false">Close</md-button>
@@ -50,6 +50,7 @@
 
 <script>
   import { validationMixin } from 'vuelidate'
+  import firebase from 'firebase'
   import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 
   export default {
@@ -98,26 +99,24 @@
         /** function to login user */
         this.showProgressBar = true
 
-        // call API to authenticate the username and password
-        if (this.form.email === 'admin@delink.com' && this.form.password === 'admin321') {
-          /** set timeout while login is still running */
-          window.setTimeout(() => {
-            console.log('The user is loged in as => ' + this.form.email)
+        /** login using firebase API */
+        firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then(user => {
+          // console.log(user)
+          this.loggedinUser = `${user.email}`
+          this.userLoggedin = true
+          this.showProgressBar = false
+          this.clearForm()
 
-            this.loggedinUser = `${this.form.email}`
-            this.userLoggedin = true
-            this.showProgressBar = false
-            this.clearForm()
-          }, 2000)
-        }else {
-          window.setTimeout(() => {
-            console.log('Check your credentilas => ' + this.form.email)
+          /** redirect to home page */
 
-            this.showProgressBar = false
-            this.wrongCredentilas = true
-          }, 2000)
-          
-        }
+        })
+        .catch(err => {
+          // console.log(err)
+          /** display error in snackbar */
+          this.showProgressBar = false
+          this.wrongCredentilas = true
+        })
       },
       validateUser () {
         /** check if form is valid */
