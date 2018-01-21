@@ -40,28 +40,32 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+  import { validationMixin } from 'vuelidate'
+  import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 
-export default {
-  name: 'LoginComponet',
-  mixins: [validationMixin],
-  data: () => ({
-    form: {
-      email: null,
-      password: null
-    },
-    sending: false
-  }),
-  validations: {
-    form: {
-      email: {
-        required,
-        email
+  export default {
+    name: 'LoginComponet',
+    mixins: [validationMixin],
+    data: () => ({
+      form: {
+        email: null,
+        password: null
       },
-      password: {
-        required,
-        minLength: minLength(6)
+      remember: true,
+      userLoggedin: false,
+      sending: false,
+      loggedinUser: null
+    }),
+    validations: {
+      form: {
+        email: {
+          required,
+          email
+        },
+        password: {
+          required,
+          minLength: minLength(6)
+        }
       }
     },
     methods: {
