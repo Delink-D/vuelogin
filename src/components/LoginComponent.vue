@@ -1,15 +1,14 @@
 <template>
   <div class='md-layout md-gutter'>
     <div class='md-layout-item'></div>
-    <md-card class='md-layout-item login-card'>
 
-      <md-card-header class='login-card--header'>
-        <div class='md-title'>Login App</div>
-      </md-card-header>
+    <form novalidate class="md-layout-item login-card" @submit.prevent="validateUser">
+      <md-card>
+        <md-card-header class='login-card--header'>
+          <div class='md-title'>Login App</div>
+        </md-card-header>
 
-      <md-card-content class='login-card--body'>
-        <form novalidate class="md-layout-row md-gutter">
-
+        <md-card-content>
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>
             <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
@@ -24,17 +23,19 @@
             <span class="md-error" v-else-if="!$v.form.password.minLength">Your password is shorter</span>
           </md-field>
 
-          <md-checkbox v-model="boolean" class="md-primary">Remember Me</md-checkbox>
-        </form>
-      </md-card-content>
+          <md-checkbox v-model="remember" class="md-primary">Remember Me</md-checkbox>
+        </md-card-content>
 
-      <md-progress-bar md-mode="indeterminate" v-if="sending" />
+        <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
-      <md-card-actions class='md-alignment-left'>
-        <md-button type="submit" class="md-raised md-primary" :disabled="sending">Login</md-button>
-      </md-card-actions>
+        <md-card-actions class='md-alignment-left'>
+          <md-button type="submit" class="md-raised md-primary" :disabled="sending">Login</md-button>
+        </md-card-actions>
+      </md-card>
 
-    </md-card>
+      <md-snackbar :md-active.sync="userLoggedin">The user {{ loggedinUser }} was Loggedin successuly!</md-snackbar>
+    </form>
+
     <div class='md-layout-item'></div>
   </div>
 </template>
