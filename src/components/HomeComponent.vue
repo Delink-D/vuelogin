@@ -30,6 +30,11 @@
           </md-list-item>
 
           <md-list-item>
+            <md-icon>group_add</md-icon>
+            <span class="md-list-item-text" v-on:click='addUser'>Add user</span>
+          </md-list-item>
+
+          <md-list-item>
             <md-icon>lock</md-icon>
             <span class="md-list-item-text logoutBtn" v-on:click="logout">Sign Out</span>
           </md-list-item>
@@ -80,6 +85,9 @@
         .catch(err => {
           this.errorLogout = true
         })
+      },
+      addUser: function() {
+        this.$router.replace('signup')
       }
     }
   }
