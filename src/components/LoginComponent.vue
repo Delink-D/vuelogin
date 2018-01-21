@@ -29,17 +29,19 @@
           <md-checkbox v-model="remember" class="md-primary">Remember Me</md-checkbox>
         </md-card-content>
 
-        <md-progress-bar md-mode="indeterminate" v-if="sending" />
         <!-- progress-bar after login -->
+        <md-progress-bar md-mode="indeterminate" v-if="showProgressBar" />
 
         <md-card-actions class='md-alignment-left'>
-          <md-button type="submit" class="md-raised md-primary" :disabled="sending">Login</md-button>
+          <md-button type="submit" class="md-raised md-primary" :disabled="submitButtonDisabled">Login</md-button>
         </md-card-actions>
-      </md-card>
       </md-card> <!-- end of login card -->
 
       <md-snackbar :md-active.sync="userLoggedin">The user {{ loggedinUser }} was Loggedin successuly!</md-snackbar>
-    </form>
+      <md-snackbar :md-active.sync="wrongCredentilas">
+        <span>The userId or password are wrong, pls try again!</span>
+        <md-button class="md-primary" @click="wrongCredentilas = false">Close</md-button>
+      </md-snackbar>
     </form> <!-- end of form -->
 
     <div class='md-layout-item'></div>
@@ -60,7 +62,10 @@
       },
       remember: true,
       userLoggedin: false,
-      loggedinUser: null
+      showProgressBar: false,
+      loggedinUser: null,
+      submitButtonDisabled: false,
+      wrongCredentilas: false
     }),
     validations: {
       form: {
