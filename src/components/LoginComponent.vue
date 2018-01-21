@@ -63,17 +63,24 @@ export default {
         required,
         minLength: minLength(6)
       }
-    }
-  },
-  methods: {
-    getValidationClass (fieldName) {
-      const field = this.$v.form[fieldName]
+    },
+    methods: {
+      getValidationClass (fieldName) {
+        const field = this.$v.form[fieldName]
+
+        if (field) {
+          return {
+            'md-invalid': field.$invalid && field.$dirty
+          }
+        }
+      },
+      clearForm () {
+        this.form.email = null
+        this.form.password = null
+      },
       loginUser () {
         this.sending = true
 
-      if (field) {
-        return {
-          'md-invalid': field.$invalid && field.$dirty
         // call API to authenticate the username and password
         if (this.form.email === 'admin@delink.com' && this.form.password === 'admin321') {
           console.log('The user is loged in as => ' + this.form.email)
