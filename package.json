@@ -1,6 +1,6 @@
 {
   "name": "vuelogin",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "This is an application build in vue framework. login app",
   "author": "Delink-D <delinkdesigns@gmail.com>",
   "private": true,
