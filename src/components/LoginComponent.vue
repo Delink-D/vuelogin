@@ -13,7 +13,7 @@
           <!-- userd filed -->
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>
-            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
+            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" />
             <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
             <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
           </md-field>
@@ -21,7 +21,7 @@
           <!-- password field -->
           <md-field :class="getValidationClass('password')">
             <label for="password">Password</label>
-            <md-input type="password" name="password" id="password" v-model="form.password" :disabled="sending" />
+            <md-input type="password" name="password" id="password" v-model="form.password" />
             <span class="md-error" v-if="!$v.form.password.required">The Password is required</span>
             <span class="md-error" v-else-if="!$v.form.password.minLength">Your password is shorter</span>
           </md-field>
@@ -60,7 +60,6 @@
       },
       remember: true,
       userLoggedin: false,
-      sending: false,
       loggedinUser: null
     }),
     validations: {
