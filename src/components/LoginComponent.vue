@@ -86,6 +86,12 @@ export default {
           this.clearForm()
         }, 1500)
       },
+      validateUser () {
+        this.$v.$touch()
+
+        if (!this.$v.$invalid) {
+          this.loginUser()
+        }
       }
     }
   }
