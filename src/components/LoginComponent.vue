@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+
 export default {
   name: 'LoginComponet',
   data () {
