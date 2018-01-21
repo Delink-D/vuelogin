@@ -95,21 +95,29 @@
         this.form.password = null
       },
       loginUser () {
-        this.sending = true
         /** function to login user */
+        this.showProgressBar = true
 
         // call API to authenticate the username and password
         if (this.form.email === 'admin@delink.com' && this.form.password === 'admin321') {
-          console.log('The user is loged in as => ' + this.form.email)
-        }
+          /** set timeout while login is still running */
+          window.setTimeout(() => {
+            console.log('The user is loged in as => ' + this.form.email)
 
-        /** set timeout while login is still running */
-        window.setTimeout(() => {
-          this.loggedinUser = `${this.form.email}`
-          this.userLoggedin = true
-          this.sending = false
-          this.clearForm()
-        }, 1500)
+            this.loggedinUser = `${this.form.email}`
+            this.userLoggedin = true
+            this.showProgressBar = false
+            this.clearForm()
+          }, 2000)
+        }else {
+          window.setTimeout(() => {
+            console.log('Check your credentilas => ' + this.form.email)
+
+            this.showProgressBar = false
+            this.wrongCredentilas = true
+          }, 2000)
+          
+        }
       },
       validateUser () {
         /** check if form is valid */
