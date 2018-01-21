@@ -2,6 +2,7 @@
   <div class='md-layout md-gutter'>
     <div class='md-layout-item'></div>
 
+    <!-- login form -->
     <form novalidate class="md-layout-item login-card" @submit.prevent="validateUser">
       <md-card>
         <md-card-header class='login-card--header'>
@@ -9,6 +10,7 @@
         </md-card-header>
 
         <md-card-content>
+          <!-- userd filed -->
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>
             <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
@@ -16,6 +18,7 @@
             <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
           </md-field>
 
+          <!-- password field -->
           <md-field :class="getValidationClass('password')">
             <label for="password">Password</label>
             <md-input type="password" name="password" id="password" v-model="form.password" :disabled="sending" />
@@ -27,14 +30,17 @@
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
+        <!-- progress-bar after login -->
 
         <md-card-actions class='md-alignment-left'>
           <md-button type="submit" class="md-raised md-primary" :disabled="sending">Login</md-button>
         </md-card-actions>
       </md-card>
+      </md-card> <!-- end of login card -->
 
       <md-snackbar :md-active.sync="userLoggedin">The user {{ loggedinUser }} was Loggedin successuly!</md-snackbar>
     </form>
+    </form> <!-- end of form -->
 
     <div class='md-layout-item'></div>
   </div>
@@ -80,17 +86,20 @@
         }
       },
       clearForm () {
+        /** call function to clear the form */
         this.form.email = null
         this.form.password = null
       },
       loginUser () {
         this.sending = true
+        /** function to login user */
 
         // call API to authenticate the username and password
         if (this.form.email === 'admin@delink.com' && this.form.password === 'admin321') {
           console.log('The user is loged in as => ' + this.form.email)
         }
 
+        /** set timeout while login is still running */
         window.setTimeout(() => {
           this.loggedinUser = `${this.form.email}`
           this.userLoggedin = true
@@ -99,6 +108,7 @@
         }, 1500)
       },
       validateUser () {
+        /** check if form is valid */
         this.$v.$touch()
 
         if (!this.$v.$invalid) {
