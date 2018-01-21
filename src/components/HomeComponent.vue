@@ -2,7 +2,7 @@
   <div class='home'>
     <md-app>
       <md-app-toolbar class="md-primary">
-        <span class="md-title">Welcome Back </span>
+        <span class="md-title">Welcome Back {{currentUser}}</span>
       </md-app-toolbar>
 
       <!-- drawer panel -->
@@ -65,7 +65,7 @@
   export default {
     name: 'HomeComponent',
     data: () => ({
-      currentUser: firebase,
+      currentUser: firebase.auth().currentUser.email,
       version: version.version,
       successLogout: false,
       errorLogout: false
