@@ -68,18 +68,27 @@ export default {
   methods: {
     getValidationClass (fieldName) {
       const field = this.$v.form[fieldName]
+      loginUser () {
+        this.sending = true
 
       if (field) {
         return {
           'md-invalid': field.$invalid && field.$dirty
+        // call API to authenticate the username and password
+        if (this.form.email === 'admin@delink.com' && this.form.password === 'admin321') {
+          console.log('The user is loged in as => ' + this.form.email)
         }
+
+        window.setTimeout(() => {
+          this.loggedinUser = `${this.form.email}`
+          this.userLoggedin = true
+          this.sending = false
+          this.clearForm()
+        }, 1500)
+      },
       }
-    },
-    loginUser() {
-      this.sending = true
     }
   }
-}
 </script>
 
 <style scoped>
