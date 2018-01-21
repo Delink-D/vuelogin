@@ -109,7 +109,7 @@
           this.clearForm()
 
           /** redirect to home page */
-
+          this.$router.replace('home')
         })
         .catch(err => {
           // console.log(err)
