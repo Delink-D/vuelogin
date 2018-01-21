@@ -2,6 +2,23 @@
 
 > This is an application build in vue framework. login app
 
+## Required Files
+> Before you can start using the aplication, You need an environment file, a json file that holds the database `firebase` credetials. All the creadentials are provided once you creaate a firebase application.
+Create the file inside the config folder and structure it as shown below:-
+
+``` json
+  {
+  "firebase": {
+    "apiKey": "API KEY HERE",
+    "authDomain" : "AUTHDOMAIN.firebaseapp.com",
+    "databaseURL" : "https://DBURL.firebaseio.com",
+    "projectId" : "vue-login-ID",
+    "storageBucket" : "vue-login-ID.appspot.com",
+    "messagingSenderId" : "MESSAGE-ID"
+  }
+  }
+```
+
 ## Build Setup
 
 ``` bash
