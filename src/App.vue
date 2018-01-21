@@ -12,6 +12,6 @@
 
 <style>
   #app {
-    padding-top: 70px;
+    
   }
 </style>

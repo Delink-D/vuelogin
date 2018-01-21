@@ -1,5 +1,5 @@
 <template>
-  <div class='md-layout md-gutter'>
+  <div class='md-layout md-gutter login'>
     <div class='md-layout-item'></div>
 
     <!-- login form -->
@@ -132,6 +132,9 @@
 </script>
 
 <style scoped>
+  .login {
+    padding-top: 70px;
+  }
   .md-progress-bar {
     position: absolute;
     top: 0;
