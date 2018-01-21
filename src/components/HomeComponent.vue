@@ -29,6 +29,14 @@
             <span class="md-list-item-text">Spam</span>
           </md-list-item>
 
+          <md-list-item>
+
+          <md-divider></md-divider>
+
+          <md-list-item>
+            <span class="md-list-item-text md-caption">Version {{version}}</span>
+          </md-list-item>
+
         </md-list>
       </md-app-drawer>
 
