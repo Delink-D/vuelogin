@@ -1,7 +1,5 @@
 <template>
-  <div id="signIn" class="md-layout md-gutter">
-    <div class="md-layout-item"></div>
-
+  <div class="md-layout md-gutter">
     <!-- signup form -->
     <form novalidate class="md-layout-item signup-card" @submit.prevent="validateUser">
       <md-card>
@@ -41,8 +39,6 @@
       <span>ERROR: Could not login at this time!</span>
       <md-button class="md-primary" @click="errorLogin = false">Close</md-button>
     </md-snackbar>
-
-    <div class="md-layout-item"></div>
   </div>
 </template>
 
@@ -120,10 +116,7 @@
   }
 </script>
 
-<style>
-  #signIn {
-    padding-top: 70px;
-  }
+<style scoped>
   .md-progress-bar {
     position: absolute;
     top: 0;
@@ -131,6 +124,6 @@
     left: 0;
   }
   .signup-card {
-    max-width: 400px;
+    max-width: 500px;
   }
 </style>
