@@ -1,5 +1,5 @@
 <template>
-  <div class='home'>
+  <div class='home' id="app">
     <md-app>
       <md-app-toolbar class="md-primary">
         <span class="md-title">Welcome Back {{currentUser}}</span>
@@ -31,7 +31,11 @@
 
           <md-list-item>
             <md-icon>group_add</md-icon>
-            <span class="md-list-item-text" v-on:click='addUser'>Add user</span>
+            <span class="md-list-item-text">
+              <router-link to="/home/signup" tag="li">
+                Add user
+              </router-link>
+            </span>
           </md-list-item>
 
           <md-list-item>
@@ -50,13 +54,15 @@
 
       <!-- main content area -->
       <md-app-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.
+
+        <router-view/>
 
         <!-- logout snackbar -->
         <md-snackbar :md-active.sync="errorLogout">
           <span>Error: Can't Sign Out now!</span>
           <md-button class="md-accent" @click="errorLogout = false">Close</md-button>
         </md-snackbar>
+
       </md-app-content>
 
     </md-app>
@@ -85,15 +91,12 @@
         .catch(err => {
           this.errorLogout = true
         })
-      },
-      addUser: function() {
-        this.$router.replace('signup')
       }
     }
   }
 </script>
 
-<style>
+<style scoped>
   .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
