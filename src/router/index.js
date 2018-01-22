@@ -23,17 +23,15 @@ let router = new Router({
       component: LoginComponent
     },
     {
-      path: '/signup',
-      name: 'SignupComponent',
-      component: SignupComponent,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
       path: '/home',
       name: 'HomeComponent',
       component: HomeComponent,
+      children: [
+        {
+          path: 'signup',
+          component: SignupComponent
+        }
+      ],
       meta: {
         requiresAuth: true
       }
